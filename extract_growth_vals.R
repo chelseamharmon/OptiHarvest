@@ -4,22 +4,27 @@ library(ggplot2)
 library(scales)
 library(tidyr)
 library(stringr)
-library(tidyverse)
+#library(tidyverse)
 library(openxlsx)
 library(splitstackshape)
-library(reshape2)
+#library(reshape2)
 library(DataCombine)
-library(lubridate)
-
+#library(lubridate)
 #Initiate script 
-if (length(args)==c(0,1) {
+
+args <- commandArgs(trailingOnly = TRUE)
+filename <- args[1]
+matchingTableName <- args[2]
+print(args)
+if (length(args)==0) {
   stop("Script needs the following inputs: <data.file.csv> <matching_list.csv>", call.=FALSE)
 } else if (length(args)==2) {
-#Input and merge data 
-data = read.csv(args[1], header=TRUE, row.names=NULL) #read.csv("plant_report_2023-01-01.csv", header=T, row.names=NULL)
-colnames(data) <- colnames(data)[2:ncol(data)]  
-data <- data[ , - ncol(data)]
-matchingTable = read.csv(args[2])
+  #Input and merge data 
+  data <- read.csv(file=filename, header=TRUE, row.names=NULL) #read.csv("plant_report_2023-01-01.csv", header=T, row.names=NULL)
+  colnames(data) <- colnames(data)[2:ncol(data)]  
+  data <- data[ , - ncol(data)]
+  matchingTable <- read.csv(file = matchingTableName)
+  head(matchingTable)
 
 matchingTable <- matchingTable %>% 
   #rename(sensor_id = Phytech_Sensor_.Unique_ID)
