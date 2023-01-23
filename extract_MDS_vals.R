@@ -4,12 +4,14 @@ library(ggplot2)
 library(scales)
 library(tidyr)
 library(stringr)
-library(tidyverse)
+#library(tidyverse)
 library(openxlsx)
 library(splitstackshape)
-library(reshape2)
+#library(reshape2)
 library(DataCombine)
-library(lubridate)
+#library(lubridate)
+
+#Initiate script 
 args <- commandArgs(trailingOnly = TRUE)
 filename <- args[1]
 matchingTableName <- args[2]
