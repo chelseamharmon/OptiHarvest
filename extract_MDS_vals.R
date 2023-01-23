@@ -15,10 +15,6 @@ library(lubridate)
 if (length(args)==c(0,1) {
   stop("Script needs the following inputs: <data.file.csv> <matching_list.csv>", call.=FALSE)
 } else if (length(args)==2) {
-  # default output file
-  args[2] = "out.txt"
-}
-
 #Input and merge data 
 data = read.csv(args[1], header=TRUE, row.names=NULL) #read.csv("plant_report_2023-01-01.csv", header=T, row.names=NULL)
 colnames(data) <- colnames(data)[2:ncol(data)]  
@@ -59,4 +55,5 @@ for (i in 1:length(list.of.names)){
     spread(Treatment, se)
   combined <- cbind(spread_data, means[2:length(means)], se_data[2:length(se_data)])#only two averaging
   write.xlsx(combined, paste0(list.of.names[i],"_mds", Sys.Date(), ".xlsx"))
+}
 }
